@@ -65,11 +65,15 @@ function Upload-IEFPolicies {
     $wc = New-Object System.Net.WebClient
     foreach($policyName in $policies) {
         try {
-            $url = "https://raw.githubusercontent.com/mrochon/b2csamples/master/Policies/MultiTenant/{0}" -f $policyName
-            $p = $wc.DownloadString($url)
+            # Upload from original author
+            #$url = "https://raw.githubusercontent.com/mrochon/b2csamples/master/Policies/MultiTenant/{0}" -f $policyName
+            #$p = $wc.DownloadString($url)
+
+            $local_path = "../../Policies/MultiTenant/{0}" -f $policyName
+            $p = Get-Content -Path $local_path
         } catch {
             "{0} failed to download" -f $policyName
-            return
+            return 
         }
         $msg = "{0}: uploading" -f $policyName
         Write-Host $msg  -ForegroundColor Green 

@@ -96,17 +96,6 @@
         </TechnicalProfile>  
       </TechnicalProfiles>
     </ClaimsProvider>
-    <ClaimsProvider>
-      <Domain>google.com</Domain>
-      <DisplayName>Google</DisplayName>
-      <TechnicalProfiles>
-        <TechnicalProfile Id="Google-OAUTH"> 
-            <OutputClaimsTransformations>
-                <OutputClaimsTransformation ReferenceId="AssertSigninEmailAndInviteEmailAreEqual" />
-            </OutputClaimsTransformations>        
-        </TechnicalProfile>
-       </TechnicalProfiles>
-    </ClaimsProvider>   
   </ClaimsProviders>
 
   <UserJourneys>
@@ -115,7 +104,6 @@
         <OrchestrationStep Order="1" Type="CombinedSignInAndSignUp" ContentDefinitionReferenceId="api.signuporsignin">
           <ClaimsProviderSelections>
             <ClaimsProviderSelection TargetClaimsExchangeId="AADExchange" />             
-            <ClaimsProviderSelection TargetClaimsExchangeId="GoogleExchange" />          
             <ClaimsProviderSelection ValidationClaimsExchangeId="LocalAccountSigninEmailExchange" />
           </ClaimsProviderSelections>
           <ClaimsExchanges>
@@ -131,7 +119,6 @@
           </Preconditions>
           <ClaimsExchanges>
             <ClaimsExchange Id="AADExchange" TechnicalProfileReferenceId="Common-AAD" />             
-            <ClaimsExchange Id="GoogleExchange" TechnicalProfileReferenceId="Google-OAUTH" />          
             <ClaimsExchange Id="SignUpWithLogonEmailExchange" TechnicalProfileReferenceId="LocalAccountSignUpWithLogonEmail" />
           </ClaimsExchanges>
         </OrchestrationStep>  
